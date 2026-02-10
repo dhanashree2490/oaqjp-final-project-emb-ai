@@ -18,6 +18,12 @@ def emotion_detector(text_to_analyse):
     fear = formatted_response['emotionPredictions'][0]['emotion']['fear']
     joy = formatted_response['emotionPredictions'][0]['emotion']['joy']
     sadness = formatted_response['emotionPredictions'][0]['emotion']['sadness']
-    #dominant_emotion = formatted_response['emotionPredictions'][0]['emotion']['dominant_emotion']
-    return {'anger': anger, 'disgust':disgust, 'fear':fear,'joy':joy,'sadness':sadness}
+    
+    
+    emotion_scores = formatted_response["emotionPredictions"][0]["emotion"]
+    dominant_emotion = max(emotion_scores, key=emotion_scores.get)
+
+    #print(dominant_emotion)
+
+    return {'anger': anger, 'disgust':disgust, 'fear':fear,'joy':joy,'sadness':sadness, 'dominant_emotion': dominant_emotion}
     #return response.text
